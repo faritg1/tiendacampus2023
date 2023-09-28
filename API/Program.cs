@@ -1,3 +1,4 @@
+using API.Extension;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,10 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.ConfigureCors();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAplicationService();
+//builder.Services.AddScoped<Infrastructure.UnitOfWork.UnitOfWork>();
 
     builder.Services.AddDbContext<TiendaCampusContext>(options =>
     {
@@ -24,6 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 

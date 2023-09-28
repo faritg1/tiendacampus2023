@@ -7,7 +7,7 @@ using Core.Interfaces;
 using Infrastructure.Data;
 
 namespace Infrastructure.Repositories;
-public class DepartamentoRepository : GenericRepository<Departamento>
+public class DepartamentoRepository : GenericRepository<Departamento>, IDepartamento
 {
     private readonly TiendaCampusContext _context;
 
